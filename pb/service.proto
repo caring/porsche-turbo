@@ -1,0 +1,52 @@
+syntax = "proto3";
+package porsche-turbo;
+
+option go_package = "pb";
+
+service PorscheTurboService {
+  rpc Ping (PingRequest)                  returns (PingResponse);
+  rpc CreateTurbo(CreateTurboRequest) returns (TurboResponse) {}
+  rpc UpdateTurbo(UpdateTurboRequest) returns (TurboResponse) {}
+  rpc DeleteTurbo(ByIDRequest)          returns (TurboResponse) {}
+  rpc GetTurbo(ByIDRequest)             returns (TurboResponse) {}
+}
+
+// #################################
+//          Ping
+// #################################
+
+message PingRequest {
+  string data = 1;
+}
+
+message PingResponse {
+  string data = 1;
+}
+
+// #################################
+//          Shared Messages
+// #################################
+message ByIDRequest {
+  string id = 1;
+}
+
+message LoadKeyRequest {
+  repeated string keys = 1;
+}
+
+// #################################
+//          Turbo
+// #################################
+message TurboResponse {
+  string id = 1;
+  string name = 2;
+}
+
+message CreateTurboRequest {
+  string name = 1;
+}
+
+message UpdateTurboRequest {
+  string id = 1;
+  string name = 2;
+}
